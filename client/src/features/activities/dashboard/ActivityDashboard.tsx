@@ -13,33 +13,29 @@ type Props = {
     editMode: boolean
     openForm: (id: string)=> void
     closeForm: ()=> void
-    submitForm: (activity: Activity)=> void
-    deleteActivity: (id:string)=> void
 }
 
 // 将 Props 数据直接解构
 export default function ActivityDashboard(
     {activities, cancelSelectActivity, selectActivity, selectedActivity,
-        editMode, openForm, closeForm, submitForm, deleteActivity}: Props) {
+        editMode, openForm, closeForm}: Props) {
     return (
         <Grid2 container spacing={3}>
             <Grid2 size={7}>
                 <ActivityList 
                     activities={activities} 
                     selectActivity={selectActivity}
-                    deleteActivity={deleteActivity}
                 />
             </Grid2>
             <Grid2 size={5}>
                 {selectedActivity && !editMode && <ActivityDetail 
-                    activity={selectedActivity} 
+                    selectedActivity={selectedActivity} 
                     cancelSelectActivity={cancelSelectActivity}
                     openForm={openForm}
                 />}
                 {editMode && <ActivityForm 
                     closeForm={closeForm} 
                     activity={selectedActivity}
-                    submitForm={submitForm}
                 />}
             </Grid2>
         </Grid2>
